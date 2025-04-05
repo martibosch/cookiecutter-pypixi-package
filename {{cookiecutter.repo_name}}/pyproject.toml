@@ -50,6 +50,9 @@ test = [
 [project.urls]
 Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}"
 
+[tool.codespell]
+skip = "CHANGELOG.md"
+
 [tool.commitizen]
 major_version_zero = true
 name = "cz_conventional_commits"
