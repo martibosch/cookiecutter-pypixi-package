@@ -61,12 +61,20 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
+      - name: add first release to changelog
+        run: |
+          RELEASE_DATE=$(date +'%Y-%m-%d')
+          sed -i "1a \n## v0.1.0 - $RELEASE_DATE\n\n- first release" CHANGELOG.md
+        if: github.event.ref == 'refs/tags/v0.1.0'
+
       - name: update changelog
         id: changelog
         uses: requarks/changelog-action@v1
         with:
           token: {% raw %}${{ github.token }}{% endraw %}
           tag: {% raw %}${{ github.ref_name }}{% endraw %}
+        # see https://github.com/requarks/changelog-action/issues/42
+        if: github.event.ref != 'refs/tags/v0.1.0'
 
       - name: create release
         uses: ncipollo/release-action@v1.16.0
