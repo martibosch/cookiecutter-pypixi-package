@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.9.4,<0.10.0"]
+build-backend = "uv_build"
 
 [project]
 name = "{{ cookiecutter.repo_name }}"
-version = "0.1.0"
+version = "{{ cookiecutter.version }}"
 description = "{{ cookiecutter.project_description }}"
 readme = "README.md"
 authors = [
@@ -25,13 +25,9 @@ text = "GPL-3.0"
 
 [project.optional-dependencies]
 dev = [
-  "build",
   "commitizen",
-  "pip",
   "pre-commit",
   "toml",
-  "tox",
-  "twine"
 ]
 doc = [
   "myst-parser",
@@ -74,6 +70,33 @@ omit = ["tests/*", "docs/conf.py"]
 [tool.coverage.run]
 source = ["{{ cookiecutter.python_module_name }}"]
 
+[tool.pixi.dependencies]
+python = ">=3.10,<3.14"
+
+[tool.pixi.environments]
+dev = ["dev"]
+doc = ["doc"]
+test = ["test"]
+
+[tool.pixi.feature.dev.tasks]
+build = {cmd = "uv build"}
+
+[tool.pixi.feature.doc.tasks]
+build-doc = {cmd = "sphinx-build docs docs/_build"}
+
+[tool.pixi.feature.test.tasks]
+test = {cmd = "pytest -s --cov={{ cookiecutter.python_module_name }} --cov-report=xml tests"}
+
+[tool.pixi.pypi-dependencies]
+{{ cookiecutter.python_module_name }} = {path = ".", editable = true}
+
+[tool.pixi.workspace]
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.email }}>"]
+channels = ["conda-forge"]
+name = "{{ cookiecutter.repo_name }}"
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+version = "{{ cookiecutter.version }}"
+
 [tool.ruff]
 line-length = 88
 
@@ -104,66 +127,6 @@ known-first-party = [
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
-[tool.setuptools.packages.find]
-include = [
-  "{{ cookiecutter.python_module_name }}",
-  "{{ cookiecutter.python_module_name }}.*",
-]
-
-[tool.tox]
-env_list = [
-  "3.10",
-  "3.11",
-  "3.12",
-  "3.13",
-  "lint"
-]
-requires = [
-  "tox>=4.19"
-]
-
-[tool.tox.env.lint]
-commands = [
-  "python -m build",
-  "sphinx-build docs docs/_build",
-  "twine check dist/*"
-]
-extras = [
-  "dev",
-  "doc",
-  "test"
-]
-whitelist_externals = [
-  "build",
-  "sphinx-build",
-  "twine"
-]
-
-[tool.tox.env_run_base]
-commands = [
-  ["pytest", "-s", "--cov={{ cookiecutter.python_module_name }}", "--cov-report=xml", "tests"]
-]
-conda_deps = [
-  "gdal>=3.3"
-]
-extras = [
-  "test"
-]
-whitelist_externals = [
-  "pytest"
-]
-
-[tool.tox.gh.python]
-"3.10" = [
-  "3.10"
-]
-"3.11" = [
-  "3.11"
-]
-"3.12" = [
-  "3.12"
-]
-"3.13" = [
-  "3.13",
-  "lint"
-]
+[tool.uv.build-backend]
+module-name = "{{ cookiecutter.python_module_name }}"
+module-root = ""

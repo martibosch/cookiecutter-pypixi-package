@@ -47,7 +47,7 @@ def test_bake_with_defaults(cookies):
 
     found_toplevel_files = [f.name for f in result_dir.iterdir()]
     assert "pyproject.toml" in found_toplevel_files
-    assert "tox.ini" in found_toplevel_files
+    assert ".readthedocs.yml" in found_toplevel_files
     assert "tests" in found_toplevel_files
 
     # test that pre-commit runs without error for the generated project

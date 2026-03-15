@@ -10,11 +10,11 @@ Template for Python packages using GDAL (from conda-forge).
 
 This project template includes the following features to ensure best practices:
 
-- **Overall project configuration**: [pyproject.toml](https://www.python.org/dev/peps/pep-0518) for [PEP-626](https://www.python.org/dev/peps/pep-0626)-compliant project configuration.
+- **Overall project configuration**: [pyproject.toml](https://www.python.org/dev/peps/pep-0518) for [PEP-621](https://peps.python.org/pep-0621)-compliant project configuration, packaging with [`uv_build`](https://docs.astral.sh/uv/concepts/build-backend), and task/environment management with [pixi](https://pixi.sh).
 - **Tests**:
-  - [tox](https://tox.wiki) for testing against multiple Python versions, with support for conda dependencies using [tox-conda](https://github.com/tox-dev/tox-conda) and GitHub Actions using [tox-gh-actions](https://github.com/ymyzk/tox-gh-actions).
+  - [pixi](https://pixi.sh) environments and tasks for testing against multiple Python versions in GitHub Actions.
   - [coverage](https://coverage.readthedocs.io) reporting with [codecov](https://codecov.io) integration.
-- **Documentation**: generated with [sphinx](https://www.sphinx-doc.org), using [MyST](https://myst-parser.readthedocs.io) for Markdown support, auto API generation from docstrings and hosting on [readthedocs](https://readthedocs.org) with the [pydata-sphinx-theme](https://github.com/pydata/pydata-sphinx-theme).
+- **Documentation**: generated with [sphinx](https://www.sphinx-doc.org), using [MyST](https://myst-parser.readthedocs.io) for Markdown support, auto API generation from docstrings and hosting on [readthedocs](https://readthedocs.org) with the [pydata-sphinx-theme](https://github.com/pydata/pydata-sphinx-theme) through a Pixi-managed docs environment.
 - **Code quality**: set up with [pre-commit](https://pre-commit.com) to run checks and tests before each commit, including, among others:
   - [ruff](https://beta.ruff.rs) for Python code linting and formatting
   - [codespell](https://github.com/codespell-project/codespell) to check for common misspellings
@@ -34,16 +34,21 @@ cookiecutter gh:martibosch/cookiecutter-geopy-package
 
 and fill in the prompts. Then, navigate to the generated directory and follow the instructions below:
 
-- Initialize a git repository (e.g., `git init`) and install the pre-commit hooks by running `pre-commit install` and `pre-commit install --hook-type commit-msg`.
+- Install [pixi](https://pixi.sh/latest) and create the local development environment with `pixi install -e dev`.
+- Commit the generated `pixi.lock` file after the first successful resolve, and update/commit it again whenever dependencies change.
+- Initialize a git repository (e.g., `git init`) and install the pre-commit hooks by running `pixi run -e dev pre-commit install` and `pixi run -e dev pre-commit install --hook-type commit-msg`.
 - Register the project in [codecov](https://codecov.io) and [readthedocs](https://readthedocs.org).
 - If the repository is public, enable [pre-commit.ci](https://pre-commit.ci) to automatically run pre-commit checks on GitHub and autoupdate the pre-commit hook versions.
-- Create accounts (or use existing accounts) and [set up pending publishers for the github repository](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/) for [PyPI](https://pypi.org) and [test PyPI](https://test.pypi.org). Enter "release.yml" in the "Workflow name" field and respectively "pypi" and "testpypi" in the "Environment name" field.
+- Create accounts (or use existing accounts) and [set up pending publishers for the github repository](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc) for [PyPI](https://pypi.org) and [test PyPI](https://test.pypi.org). Enter "release.yml" in the "Workflow name" field and respectively "pypi" and "testpypi" in the "Environment name" field.
 
-You can then start developing your package.
+You can then start developing your package with `pixi run -e test test` and `pixi run -e doc build-doc`.
+
+If you want stricter CI after committing `pixi.lock`, you can set `frozen: true` in the generated GitHub Actions workflows so CI fails when the lockfile is missing or out of date.
 
 ### Submit a recipe to conda-forge
 
 If you want your package to be available from [conda-forge](https://conda-forge.org), you can generate a recipe for it using [grayskull](https://github.com/conda/grayskull) and then submit it by following the instructions in the [conda-forge documentation](https://conda-forge.org/docs/maintainer/adding_pkgs.html#forking-and-pull-request).
 
 ## Acknowledgements
+
 - This template borrows several ideas from [zillionare/python-project-wizard](https://github.com/zillionare/python-project-wizard).

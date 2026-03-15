@@ -2,12 +2,12 @@
 
 import os
 import sys
-import pkg_resources
+from importlib import metadata
 
 project = "{{ cookiecutter.project_name }}"
 author = "{{ cookiecutter.author_name }}"
 
-release = pkg_resources.get_distribution("{{ cookiecutter.python_module_name }}").version
+release = metadata.version("{{ cookiecutter.python_module_name }}")
 version = ".".join(release.split(".")[:2])
 
 

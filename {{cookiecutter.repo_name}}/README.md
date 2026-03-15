@@ -1,4 +1,4 @@
-[![PyPI version fury.io](https://badge.fury.io/py/{{ cookiecutter.repo_name }}.svg)](https://pypi.python.org/pypi/{{ cookiecutter.repo_name }}/)
+[![PyPI version fury.io](https://badge.fury.io/py/{{ cookiecutter.repo_name }}.svg)](https://pypi.python.org/pypi/{{ cookiecutter.repo_name }})
 [![Documentation Status](https://readthedocs.org/projects/{{ cookiecutter.repo_name }}/badge/?version=latest)](https://{{ cookiecutter.repo_name }}.readthedocs.io/en/latest/?badge=latest)
 [![CI/CD](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/actions/workflows/tests.yml/badge.svg)](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/blob/main/.github/workflows/tests.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/main.svg)](https://results.pre-commit.ci/latest/github/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/main)
@@ -14,6 +14,18 @@
 ```bash
 pip install {{ cookiecutter.repo_name }}
 ```
+
+## Development
+
+Install [pixi](https://pixi.sh/latest) and use the generated environments and tasks:
+
+```bash
+pixi install -e dev
+pixi run -e test test
+pixi run -e doc build-doc
+```
+
+Commit the generated `pixi.lock` file once you have resolved the environments for your project, and update it whenever dependencies change.
 
 ## Acknowledgements
 
