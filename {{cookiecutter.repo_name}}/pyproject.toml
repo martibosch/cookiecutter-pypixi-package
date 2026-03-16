@@ -47,7 +47,8 @@ test = [
 Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}"
 
 [tool.codespell]
-skip = "CHANGELOG.md"
+ignore-regex = '^\s*"image\/png":\s.*'
+skip = "CHANGELOG.md,pixi.lock"
 
 [tool.commitizen]
 major_version_zero = true
