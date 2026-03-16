@@ -6,7 +6,7 @@ Contributions are always greatly appreciated and credit will always be given.
 
 ### Report bugs
 
-Report bugs at https://github.com/martibosch/cookiecutter-geopy-package/issues.
+Report bugs at https://github.com/martibosch/cookiecutter-pypixi-package/issues.
 
 If you are reporting a bug, please include:
 

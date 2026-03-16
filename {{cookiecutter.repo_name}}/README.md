@@ -29,4 +29,4 @@ Commit the generated `pixi.lock` file once you have resolved the environments fo
 
 ## Acknowledgements
 
-- This package was created with the [martibosch/cookiecutter-geopy-package](https://github.com/martibosch/cookiecutter-geopy-package) project template.
+- This package was created with the [martibosch/cookiecutter-pypixi-package](https://github.com/martibosch/cookiecutter-pypixi-package) project template.

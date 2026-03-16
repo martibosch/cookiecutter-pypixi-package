@@ -1,10 +1,10 @@
-[![CI](https://github.com/martibosch/cookiecutter-geopy-package/actions/workflows/dev.yml/badge.svg)](https://github.com/martibosch/cookiecutter-geopy-package/blob/main/.github/workflows/dev.yml)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/martibosch/cookiecutter-geopy-package/main.svg)](https://results.pre-commit.ci/latest/github/martibosch/cookiecutter-geopy-package/main)
-[![GitHub license](https://img.shields.io/github/license/martibosch/cookiecutter-geopy-package.svg)](https://github.com/martibosch/cookiecutter-geopy-package/blob/main/LICENSE)
+[![CI](https://github.com/martibosch/cookiecutter-pypixi-package/actions/workflows/dev.yml/badge.svg)](https://github.com/martibosch/cookiecutter-pypixi-package/blob/main/.github/workflows/dev.yml)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/martibosch/cookiecutter-pypixi-package/main.svg)](https://results.pre-commit.ci/latest/github/martibosch/cookiecutter-pypixi-package/main)
+[![GitHub license](https://img.shields.io/github/license/martibosch/cookiecutter-pypixi-package.svg)](https://github.com/martibosch/cookiecutter-pypixi-package/blob/main/LICENSE)
 
-# Cookiecutter geopy package
+# Cookiecutter PyPixi package
 
-Template for Python packages using GDAL (from conda-forge).
+Template for Python packages using Pixi.
 
 ## Features
 
@@ -29,7 +29,7 @@ This project template includes the following features to ensure best practices:
 Generate a new project using [cookiecutter](https://github.com/cookiecutter/cookiecutter):
 
 ```bash
-cookiecutter gh:martibosch/cookiecutter-geopy-package
+cookiecutter gh:martibosch/cookiecutter-pypixi-package
 ```
 
 and fill in the prompts. Then, navigate to the generated directory and follow the instructions below:
