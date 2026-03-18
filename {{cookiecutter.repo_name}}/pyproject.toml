@@ -71,6 +71,9 @@ omit = ["tests/*", "docs/conf.py"]
 [tool.coverage.run]
 source = ["{{ cookiecutter.python_module_name }}"]
 
+[tool.mdformat]
+number = true
+
 [tool.pixi.dependencies]
 python = ">=3.10,<3.14"
 
